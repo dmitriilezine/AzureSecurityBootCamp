@@ -2,26 +2,27 @@
 
 # Azure VM Encryption Lab
 ## Create VM 
-#### Run the following template.  https://portal.azure.com/microsoft.onmicrosoft.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fdmitriilezine%2FSingle-VM%2Fmaster%2FSingle%20VM%2Fazuredeploy.json
-#### Create new Resource Group, name it '<alias>-ADELAB', wheere '<alias>' is your alias
-#### For location select "West US"
-#### Under "Windows OS Type" parameter select WinServer2016
-#### Virtual Machine Size Standard_DS12_v2
-#### Click "Purchase"
-#### VM will be deployed in about 5 minutes
+
+0. Run the following template.  https://portal.azure.com/microsoft.onmicrosoft.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fdmitriilezine%2FSingle-VM%2Fmaster%2FSingle%20VM%2Fazuredeploy.json
+1. Create new Resource Group, name it 'alias-ADELAB', wheere 'alias' is your alias
+2. For location select "West US"
+3. Under "Windows OS Type" parameter select WinServer2016
+4. Virtual Machine Size Standard_DS12_v2
+5. Click "Purchase"
+6. VM will be deployed in about 5 minutes
 
 ## Verify VM encryption status
-#### Open Cloud Shell and run the following PowerShell code to see current status of VM encryption. Replace <alias> with your alias
-	$rgName = '<alias>-ADELAB'
+Open Cloud Shell and run the following PowerShell code to see current status of VM encryption. Replace 'alias' with your alias
+	$rgName = 'alias-ADELAB'
 	$vmName = 'JumpBox'
 	Get-AzureRmVmDiskEncryptionStatus -ResourceGroupName $rgName -VMName $vmName
 
-#### What is the status of VM encryption?
+* What is the status of VM encryption?
 
 ## Create Azure Key Vault
-#### In the Cloud Shell run the following code. Replace <alias> with your alias. Replace <domain> with domain that will complete your account for Azure AD, as shown in Azure portal in the top right corner.
+#### In the Cloud Shell run the following code. Replace 'alias' with your alias. Replace <domain> with domain that will complete your account for Azure AD, as shown in Azure portal in the top right corner.
 #### Make sure that the location is the same as was used to create VM, ie West US
-	$alias = '<alias>'
+	$alias = 'alias'
 	$logonname = $alias+'@<domain>.com'
 	$location ="West US"
 	$keyVaultName =$alias+'-akvade'
@@ -37,7 +38,7 @@
 #### Verify parameters for accuracy. 
 #### In the Cloud Shell run the following code.
 
-	$rgName = '<alias>-ADELAB'
+	$rgName = 'alias-ADELAB'
 	$vmName = 'JumpBox'
 	$KeyVaultName = $alias+'-akvade'
 	$KeyVault = Get-AzureRmKeyVault -VaultName $KeyVaultName -ResourceGroupName $rgname
