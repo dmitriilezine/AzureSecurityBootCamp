@@ -6,7 +6,7 @@
 0. Run the following template.  https://portal.azure.com/microsoft.onmicrosoft.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fdmitriilezine%2FSingle-VM%2Fmaster%2FSingle%20VM%2Fazuredeploy.json
 1. Create new Resource Group, name it 'alias-ADELAB', wheere 'alias' is your alias
 2. For location select "West US"
-3. Admin password is created as "Subscription#YOURSUbscrioptionID". You can replace it with your own strong password
+3. Admin password is created as "Subscription#YOURSUBSCRIPTIONID". You can replace it with your own strong password
 4. Replace Source Client IP with Public IP of your device, or put "*" to allow any source
 5. Under "Windows OS Type" parameter select WinServer2016
 6. Virtual Machine Size Standard_DS12_v2 to have speedy lab experienses 
@@ -76,8 +76,8 @@ In the Cloud Shell run the following
 	New-Partition -DiskNumber 3 -UseMaximumSize -DriveLetter G
 	Format-Volume -DriveLetter G -FileSystem NTFS
 
-### At this time, the data disk should be initialized and formatted on the VM and we should be able to encrypt it.
-### Run the disk encryption command again and see if it will encrypt the second disk
+#### At this time, the data disk should be initialized and formatted on the VM and we should be able to encrypt it.
+#### Run the disk encryption command again and see if it will encrypt the second disk
 
 ## Check AKV for secret material related to ADE
 
