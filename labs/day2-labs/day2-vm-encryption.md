@@ -13,6 +13,7 @@
 
 ## Verify VM encryption status
 Open Cloud Shell and run the following PowerShell code to see current status of VM encryption. Replace 'alias' with your alias
+	
 	$rgName = 'alias-ADELAB'
 	$vmName = 'JumpBox'
 	Get-AzureRmVmDiskEncryptionStatus -ResourceGroupName $rgName -VMName $vmName
