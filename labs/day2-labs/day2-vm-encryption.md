@@ -21,23 +21,26 @@ Open Cloud Shell and run the following PowerShell code to see current status of 
 * What is the status of VM encryption?
 
 ## Create Azure Key Vault
-#### In the Cloud Shell run the following code. Replace 'alias' with your alias. Replace <domain> with domain that will complete your account for Azure AD, as shown in Azure portal in the top right corner.
-#### Make sure that the location is the same as was used to create VM, ie West US
+In the Cloud Shell run the following code. Replace 'alias' with your alias. Replace <domain> with domain that will complete your account for Azure AD, as shown in Azure portal in the top right corner.
+* Make sure that the location is the same as was used to create VM, ie West US
+
 	$alias = 'alias'
 	$logonname = $alias+'@<domain>.com'
 	$location ="West US"
 	$keyVaultName =$alias+'-akvade'
 
-#### This line will create AKV
+Create AKV
+
 	New-AzureRmKeyVault -VaultName $keyVaultName -ResourceGroupName $rgName -Sku Standard -Location $location
-#### This line will enable it for ADE
+
+Enable it for ADE
+
 	Set-AzureRmKeyVaultAccessPolicy -VaultName $keyVaultName -EnabledForDiskEncryption
  
 
 ## Encrypt VM
-#### After AKV is ready, we can encrypt the VM
-#### Verify parameters for accuracy. 
-#### In the Cloud Shell run the following code.
+After AKV is ready, we can encrypt the VM. Verify parameters for accuracy. 
+In the Cloud Shell run the following code.
 
 	$rgName = 'alias-ADELAB'
 	$vmName = 'JumpBox'
@@ -46,23 +49,26 @@ Open Cloud Shell and run the following PowerShell code to see current status of 
 	$diskEncryptionKeyVaultUrl = $KeyVault.VaultUri
 	$KeyVaultResourceId = $KeyVault.ResourceId
 
-#### This line will enable disk encryption on a VM
+Enable disk encryption on a VM
+
 	Set-AzureRmVMDiskEncryptionExtension -ResourceGroupName $rgname -VMName $vmName -DiskEncryptionKeyVaultUrl $diskEncryptionKeyVaultUrl -DiskEncryptionKeyVaultId $KeyVaultResourceId -VolumeType All -Force
 
 
 ## Verify VM encryption status
-#### In the Cloud Shell run the following code.
+In the Cloud Shell run the following
+
 	Get-AzureRmVmDiskEncryptionStatus -ResourceGroupName $rgName -VMName $vmName
 
-#### Did it enable encryption on both drives? 
-#### Why do you think the data drive is not encrypted?
+* Did it enable encryption on both drives? 
+* Why do you think the data drive is not encrypted?
 
 
 ## Intialize and format data disk via Run Command
-	0. In Azure Portal, click on the VM, scroll down in the left pane and click on "Run Command"
-	1. Click on the RunPowerShellScript
-	2. Copy/paste the following PowerShell code into the window and click Run.
-	3. Wait for execution of the commands against the VM.
+
+0. In Azure Portal, click on the VM, scroll down in the left pane and click on "Run Command"
+1. Click on the RunPowerShellScript
+2. Copy/paste the following PowerShell code into the window and click Run.
+3. Wait for execution of the commands against the VM.
 #
 	Initialize-Disk -Number 3 -PartitionStyle MBR
 	New-Partition -DiskNumber 3 -UseMaximumSize -DriveLetter G
@@ -72,8 +78,9 @@ Open Cloud Shell and run the following PowerShell code to see current status of 
 ### Run the disk encryption command again and see if it will encrypt the second disk
 
 ## Check AKV for secret material related to ADE
-### In AKV, see if you have access to the Secrets. Why not?
-### Grant yourself access to the Secrets. Why is it possible for you to do this?
-### How many secrets are present?
+
+In AKV, see if you have access to the Secrets. Why not?
+Grant yourself access to the Secrets. Why is it possible for you to do this?
+How many secrets are present?
 
 
