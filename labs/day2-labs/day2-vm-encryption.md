@@ -22,7 +22,7 @@ Open Cloud Shell and run the following PowerShell code to see current status of 
 
 ## Create Azure Key Vault
 In the Cloud Shell run the following code. Replace 'alias' with your alias. Replace <domain> with domain that will complete your account for Azure AD, as shown in Azure portal in the top right corner.
-* Make sure that the location is the same as was used to create VM, ie West US
+Make sure that the location is the same as was used to create VM, ie West US
 
 	$alias = 'alias'
 	$logonname = $alias+'@<domain>.com'
@@ -69,7 +69,7 @@ In the Cloud Shell run the following
 1. Click on the RunPowerShellScript
 2. Copy/paste the following PowerShell code into the window and click Run.
 3. Wait for execution of the commands against the VM.
-#
+###
 	Initialize-Disk -Number 3 -PartitionStyle MBR
 	New-Partition -DiskNumber 3 -UseMaximumSize -DriveLetter G
 	Format-Volume -DriveLetter G -FileSystem NTFS
@@ -79,8 +79,8 @@ In the Cloud Shell run the following
 
 ## Check AKV for secret material related to ADE
 
-In AKV, see if you have access to the Secrets. Why not?
-Grant yourself access to the Secrets. Why is it possible for you to do this?
-How many secrets are present?
+1. In AKV, see if you have access to the Secrets. Why not?
+2. Grant yourself access to the Secrets. Why is it possible for you to do this?
+3. How many secrets are present?
 
 
