@@ -1,1 +1,1 @@
-# AzureSecurityBootcCamp
+# AzureSecurityBootCamp
