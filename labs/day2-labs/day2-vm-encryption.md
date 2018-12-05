@@ -6,10 +6,12 @@
 0. Run the following template.  https://portal.azure.com/microsoft.onmicrosoft.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fdmitriilezine%2FSingle-VM%2Fmaster%2FSingle%20VM%2Fazuredeploy.json
 1. Create new Resource Group, name it 'alias-ADELAB', wheere 'alias' is your alias
 2. For location select "West US"
-3. Under "Windows OS Type" parameter select WinServer2016
-4. Virtual Machine Size Standard_DS12_v2
-5. Click "Purchase"
-6. VM will be deployed in about 5 minutes
+3. Admin password is created as "Subscription#YOURSUbscrioptionID". You can replace it with your own strong password
+4. Replace Source Client IP with Public IP of your device, or put "*" to allow any source
+5. Under "Windows OS Type" parameter select WinServer2016
+6. Virtual Machine Size Standard_DS12_v2 to have speedy lab experienses 
+7. Click "Purchase"
+8. VM will be deployed in about 5 minutes. This VM is deployed with autoshutdown scheduled for 11PM EST.
 
 ## Verify VM encryption status
 Open Cloud Shell and run the following PowerShell code to see current status of VM encryption. Replace 'alias' with your alias
@@ -21,11 +23,11 @@ Open Cloud Shell and run the following PowerShell code to see current status of 
 * What is the status of VM encryption?
 
 ## Create Azure Key Vault
-In the Cloud Shell run the following code. Replace 'alias' with your alias. Replace <domain> with domain that will complete your account for Azure AD, as shown in Azure portal in the top right corner.
+In the Cloud Shell run the following code. Replace 'alias' with your alias. Replace 'domain' with domain that will complete your account for Azure AD, as shown in Azure portal in the top right corner.
 Make sure that the location is the same as was used to create VM, ie West US
 
 	$alias = 'alias'
-	$logonname = $alias+'@<domain>.com'
+	$logonname = $alias+'@domain.com'
 	$location ="West US"
 	$keyVaultName =$alias+'-akvade'
 
