@@ -85,4 +85,7 @@ In the Cloud Shell run the following
 2. Grant yourself access to the Secrets. Why is it possible for you to do this?
 3. How many secrets are present?
 
+# References
+Azure Disk Encryption https://docs.microsoft.com/en-us/azure/security/azure-security-disk-encryption-prerequisites
+
 
