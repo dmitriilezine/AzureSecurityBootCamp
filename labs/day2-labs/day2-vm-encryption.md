@@ -85,6 +85,35 @@ In the Cloud Shell run the following
 2. Grant yourself access to the Secrets. Why is it possible for you to do this?
 3. How many secrets are present?
 
+# Disable encryption on VM
+
+	Disable-AzureRmVMDiskEncryption -ResourceGroupName $rgNam -VMName $vmName
+
+
+## Verify VM encryption status
+In the Cloud Shell run the following
+
+	Get-AzureRmVmDiskEncryptionStatus -ResourceGroupName $rgName -VMName $vmName
+
+
+# Enable encryption with KEK
+
+	$keyEncryptionKeyName = 'MySuperSecretKeyEncryptionKey'
+    Add-AzureKeyVaultKey -VaultName $KeyVaultName -Name $keyEncryptionKeyName -Destination 'Software'
+    $keyEncryptionKeyUrl = (Get-AzureKeyVaultKey -VaultName $KeyVaultName -Name $keyEncryptionKeyName).Key.kid
+	Set-AzureRmVMDiskEncryptionExtension -ResourceGroupName $rgName -VMName $vmName -DiskEncryptionKeyVaultUrl $diskEncryptionKeyVaultUrl -DiskEncryptionKeyVaultId $KeyVaultResourceId -KeyEncryptionKeyUrl $keyEncryptionKeyUrl -KeyEncryptionKeyVaultId $KeyVaultResourceId -VolumeType All -Force
+
+## Verify VM encryption status
+In the Cloud Shell run the following
+
+	Get-AzureRmVmDiskEncryptionStatus -ResourceGroupName $rgName -VMName $vmName
+
+## Check AKV for secret material related to ADE
+
+1. In AKV, see if you have access to Keys. Why not?
+2. Grant yourself access to the Secrets. Why is it possible for you to do this?
+3. How many Keys are present?
+
 # References
 Azure Disk Encryption https://docs.microsoft.com/en-us/azure/security/azure-security-disk-encryption-prerequisites
 
