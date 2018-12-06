@@ -6,7 +6,9 @@ Welcome to Azure Security Bootcamp!
 
 ## Labs
 ### Day 1
-  0. Labs Steps are provided via Word document
+  0. [VM Creation](labs/day1-labs/day1-vm-build.md)
+  1. Labs Steps are provided via Word document
+  
 ### Day 2
   0. [Azure VM Encryption](labs/day2-labs/day2-vm-encryption.md)
   1. Azure Network Security provided via Word document

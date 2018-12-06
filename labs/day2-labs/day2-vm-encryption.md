@@ -1,7 +1,7 @@
 
 
 # Azure VM Encryption Lab
-## Create VM 
+## Create Windows Server 2016 VM 
 
 0. Run the following template.  https://portal.azure.com/microsoft.onmicrosoft.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fdmitriilezine%2FSingle-VM%2Fmaster%2FSingle%20VM%2Fazuredeploy.json
 1. Create new Resource Group, name it 'alias-ADELAB', wheere 'alias' is your alias
