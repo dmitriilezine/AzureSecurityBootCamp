@@ -86,6 +86,7 @@ In the Cloud Shell run the following
 3. How many secrets are present?
 
 # Disable encryption on VM
+In the Cloud Shell run the following
 
 	Disable-AzureRmVMDiskEncryption -ResourceGroupName $rgNam -VMName $vmName
 
@@ -97,6 +98,7 @@ In the Cloud Shell run the following
 
 
 # Enable encryption with KEK
+In the Cloud Shell run the following
 
 	$keyEncryptionKeyName = 'MySuperSecretKeyEncryptionKey'
     Add-AzureKeyVaultKey -VaultName $KeyVaultName -Name $keyEncryptionKeyName -Destination 'Software'
