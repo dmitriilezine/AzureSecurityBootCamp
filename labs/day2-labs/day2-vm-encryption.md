@@ -4,7 +4,7 @@
 ## Create Windows Server 2016 VM 
 
 0. Run the following template.  https://portal.azure.com/microsoft.onmicrosoft.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fdmitriilezine%2FSingle-VM%2Fmaster%2FSingle%20VM%2Fazuredeploy.json
-1. Create new Resource Group, name it 'alias-ADELAB', wheere 'alias' is your alias
+1. Create new Resource Group, name it 'alias-ADELAB', where 'alias' is your alias
 2. For location select "West US"
 3. Admin password is created as "Subscription#YOURSUBSCRIPTIONID". You can replace it with your own strong password
 4. Replace Source Client IP with Public IP of your device, or put "*" to allow any source
