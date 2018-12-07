@@ -7,6 +7,7 @@ For this lab you need to have ADDS lab deployment from Day 1.
 It takes about one hour to deploy the ADDS and should have been done before start of this lab.
 
 VMs in the lab are automatically shutdown every evening. Before starting this lab, power them up.
+
 0. In Azure Portal select resource group to which it was delopyed ('alias-ADELAB')
 1. Select DC1, DC2, AS1 and JumpBox (JumpBox only if you plan to get OS level access into environment), and click on Start, confirm Yes if asked.
 2. Wait till VM status shown as Running.
@@ -24,7 +25,7 @@ Open Cloud Shell and run the following PowerShell code to see current status of 
 
 ## Create Azure Key Vault
 In the Cloud Shell run the following code. Replace 'alias' with your alias. Replace 'domain' with domain that will complete your account for Azure AD, as shown in Azure portal in the top right corner.
-Make sure that the location is the same as was used to create VM, ie West US
+Make sure that the location is the same as was used to create VMs, ie West US
 
 	$alias = 'alias'
 	$logonname = $alias+'@domain.com'
@@ -41,7 +42,8 @@ Enable it for ADE
  
 
 ## Encrypt DC1 VM
-After AKV is ready, we can encrypt the VM. Verify parameters for accuracy. 
+After AKV is ready, we can encrypt the VM. Important: per Azure ADE guideance, for any critical environment, make a backup of a VM before enabling ADE.
+Verify parameters for accuracy. 
 In the Cloud Shell run the following code.
 
 	$rgName = 'alias-ADELAB'
@@ -64,7 +66,14 @@ In the Cloud Shell run the following
 * Did it enable encryption on both drives? 
 
 ## Encrypt DC2 VM with KEK
-In the Cloud Shell run the following code
+Grant your account access to keys in the key vault. In Cloud Shell:
+
+	$alias = 'alias'
+	$KeyVaultName = $alias+'-akvade'
+	$logonname = $alias+'@domain.com'
+	Set-AzureRmKeyVaultAccessPolicy -VaultName $keyVaultName -UserPrincipalName $logonname -PermissionsToKeys decrypt,encrypt,unwrapKey,wrapKey,verify,sign,get,list,update,create,import,delete,backup,restore,recover,purge -PassThru
+
+In the Cloud Shell run the following code to create KEK. Verify parameters for accuracy
 
 	$rgName = 'alias-ADELAB'
 	$vmName = 'DC2'
@@ -119,6 +128,7 @@ In the Cloud Shell run the following
 * Why do you think the data drive is not encrypted?
 
 ## Intialize and format data disk via Run Command
+### Second disk on app server VM is not initialized during VM deployment and must be initialized 
 
 0. In Azure Portal, click on the VM, scroll down in the left pane and click on "Run Command"
 1. Click on the RunPowerShellScript
