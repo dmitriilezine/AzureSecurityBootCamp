@@ -5,6 +5,9 @@
 ### Important: VMs in these labs are not configured for autoshutdown and will run till manually shutdown or deleted. Make sure to shutdown or delete these labs when down practicing.
 ### Important: Azure Firewall is $1.25/hour, which is $30/day. Delete this resource as soon as you are done working with it.
 
+### Lab0 - Hydration
+0. The PowerShell script and instructions provided via the Word document
+
 ### Lab1 - Deploy network resources
 0. Lab introduction is in Word document
 1. If you want to deploy it via Visual Studio, then follow instructions in the Word document
