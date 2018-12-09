@@ -180,7 +180,8 @@ In Cloud Shell:
 	$saContainer = 'containername'
 
 	$sas = Grant-AzureRmDiskAccess -ResourceGroupName $rgName -DiskName $disk -DurationInSecond 600 -Access Read
-	$destContext = New-AzureStorageContext –StorageAccountName $saName -StorageAccountKey $saKey	$copyBlob = start-AzureStorageBlobCopy -AbsoluteUri $sas.AccessSAS -DestContainer $saContainer -DestContext $destContext -DestBlob disk.vhd
+	$destContext = New-AzureStorageContext –StorageAccountName $saName -StorageAccountKey $saKey
+	$copyBlob = start-AzureStorageBlobCopy -AbsoluteUri $sas.AccessSAS -DestContainer $saContainer -DestContext $destContext -DestBlob disk.vhd
 	$copyBlob | Get-AzureStorageBlobCopyState
 
 Above steps should copy disk into storage account. You can download it to your Azure VM, mount it and attempt access data.
