@@ -11,5 +11,5 @@ Welcome to Azure Security Bootcamp!
   
 ### Day 2
   0. [Azure VM Encryption](labs/day2-labs/day2-vm-encryption.md)
-  1. Azure Network Security lab provided via Word document
+  1. [Azure Network Security labs](labs/day2-labs/day2-networkSecurity.md)
 
