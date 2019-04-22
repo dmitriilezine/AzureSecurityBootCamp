@@ -4,14 +4,14 @@
 ### This VM will be used this afternoon
 
 0. Run the following template.  https://portal.azure.com/microsoft.onmicrosoft.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fdmitriilezine%2FSingle-VM%2Fmaster%2FSingle%20VM%2Fazuredeploy.json
-1. Create new Resource Group, name it 'alias-WIN10PRO', where 'alias' is your alias
-2. For location select "West US"
-3. Admin password is created as "Subscription#YOURSUBSCRIPTIONID". You can replace it with your own strong password
+1. Create new Resource Group, name it as **'alias-WIN10PRO'**, where 'alias' is your alias.
+2. For location select **"West US"**.
+3. Admin password is created as **"Subscription#YOURSUBSCRIPTIONID"**. You can replace it with your own strong password.
 4. Replace Source Client IP with Public IP of your device, or put "*" to allow any source
-5. Under "Windows OS Type" parameter select Win10Pro1809
-6. Virtual Machine Size Standard_DS12_v2 to have speedy lab experienses 
-7. Click "Purchase"
-8. VM will be deployed in about 6 to 8 minutes. This VM is deployed with autoshutdown scheduled for 11PM EST.
+5. Under **"Windows OS Type"** parameter select **Win10Pro1809**
+6. Virtual Machine Size **Standard_DS12_v2** to have speedy lab experienses 
+7. Click **"Purchase"**
+8. VM will be deployed in about 6 to 8 minutes. This VM is deployed with autoshutdown scheduled for 10PM CST.
 
 ## Create Windows 10 VM with Visual Studio 2017
 ### This VM will be used on Day 2 and must be ready before Day 2 second lab excercise. If you already have VS on your primary device and do not mind load lab solutions, then you do not need to load this VM.
