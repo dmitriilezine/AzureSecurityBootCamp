@@ -1,6 +1,6 @@
 
 # VM Preparation for Azure Labs
-## Create Windows 10 Pro 1809 VM 
+## #1 Create Windows 10 Pro 1809 VM 
 ### This VM will be used this afternoon
 
 0. Run the following template.  https://portal.azure.com/microsoft.onmicrosoft.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fdmitriilezine%2FSingle-VM%2Fmaster%2FSingle%20VM%2Fazuredeploy.json
@@ -13,7 +13,8 @@
 7. Click **"Purchase"**
 8. VM will be deployed in about 6 to 8 minutes. This VM is deployed with autoshutdown scheduled for 10PM CST.
 
-## Create Windows 10 VM with Visual Studio 2017
+#
+## #2 Create Windows 10 VM with Visual Studio 2017
 ### This VM will be used on Day 2 and must be ready before Day 2 second lab excercise. If you already have Visual Studio on your primary laptop and you do not mind loading lab solutions on your laptop, then you do not need to install this VM.
 
 0. Run the following template.  https://portal.azure.com/microsoft.onmicrosoft.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fdmitriilezine%2FSingle-VM%2Fmaster%2FSingle%20VM%2Fazuredeploy.json
@@ -28,7 +29,8 @@
 9. Logon to this VM via RDP
 10. Start Visual Studio and initiate update to get it up to date with latest releases
 
-## Deploy ADDS base solution
+#
+## #3 Deploy ADDS base solution
 ### This solution will be used on Day 2 and must be ready before Day 2 first lab excercise. It takes about one hour to deploy this solution.
 
 0. Run the following template.
