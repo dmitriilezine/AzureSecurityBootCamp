@@ -24,8 +24,8 @@ Open Cloud Shell and run the following PowerShell code to see current status of 
 * What is the status of VM encryption for DC1 and DC2?
 
 ## Create Azure Key Vault
-In the Cloud Shell run the following code. Replace 'alias' with your alias. Replace 'domain' with domain that will complete your account for Azure AD, as shown in Azure portal in the top right corner.
-Make sure that the location is the same as was used to create VMs, ie West US
+In the Cloud Shell run the following code. Replace **'alias'** with your alias. Replace **'domain'** with domain that will complete your account for Azure AD, as shown in Azure portal in the top right corner.
+Make sure that the location is the same as was used to create VMs, ie if VMs are created in **West US** then specify **West US**, or the location that you used to create those VMs. Azure Key Vault used for disk encryption must be in the same region as the VMs being encrypted.
 
 	$alias = 'alias'
 	$logonname = $alias+'@domain.com'
