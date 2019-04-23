@@ -42,9 +42,11 @@ Enable it for ADE
  
 
 ## Encrypt DC1 VM
-After AKV is ready, we can encrypt the VM. Important: per Azure ADE guideance, for any critical environment, make a backup of a VM before enabling ADE.
-Verify parameters for accuracy. 
-In the Cloud Shell run the following code.
+After AKV is ready, we can encrypt the VM. Important: per Azure ADE guideance, for any critical environment, make a backup of a VM before enabling ADE (not neccessary for this lab).
+
+**During this lab pay attention to accuracy of the parameters. Most mistakes happen becouse of typos or wrong parameters** 
+
+In the Cloud Shell run the following code (replace 'alias' with your alias) to set parameters:
 
 	$rgName = 'alias-ADELAB'
 	$vmName = 'DC1'
@@ -53,19 +55,19 @@ In the Cloud Shell run the following code.
 	$diskEncryptionKeyVaultUrl = $KeyVault.VaultUri
 	$KeyVaultResourceId = $KeyVault.ResourceId
 
-Enable disk encryption on a DC1 VM
+Enable disk encryption on a DC1 VM:
 
 	Set-AzureRmVMDiskEncryptionExtension -ResourceGroupName $rgname -VMName $vmName -DiskEncryptionKeyVaultUrl $diskEncryptionKeyVaultUrl -DiskEncryptionKeyVaultId $KeyVaultResourceId -VolumeType All -Force
 
 
 ## Verify DC1 VM encryption status
-In the Cloud Shell run the following
+In the Cloud Shell run the following:
 
 	Get-AzureRmVmDiskEncryptionStatus -ResourceGroupName $rgName -VMName $vmName
 
 * Did it enable encryption on both drives? 
 
-## Encrypt DC2 VM with KEK
+## Encrypt DC2 VM with KEK (key encryption key)
 Grant your account access to keys in the key vault. In Cloud Shell:
 
 	$alias = 'alias'
@@ -73,7 +75,7 @@ Grant your account access to keys in the key vault. In Cloud Shell:
 	$logonname = $alias+'@domain.com'
 	Set-AzureRmKeyVaultAccessPolicy -VaultName $keyVaultName -UserPrincipalName $logonname -PermissionsToKeys decrypt,encrypt,unwrapKey,wrapKey,verify,sign,get,list,update,create,import,delete,backup,restore,recover,purge -PassThru
 
-In the Cloud Shell run the following code to create KEK. Verify parameters for accuracy
+In the Cloud Shell run the following code to create KEK. Verify parameters for accuracy.
 
 	$rgName = 'alias-ADELAB'
 	$vmName = 'DC2'
@@ -85,13 +87,13 @@ In the Cloud Shell run the following code to create KEK. Verify parameters for a
     Add-AzureKeyVaultKey -VaultName $KeyVaultName -Name $keyEncryptionKeyName -Destination 'Software'
     $keyEncryptionKeyUrl = (Get-AzureKeyVaultKey -VaultName $KeyVaultName -Name $keyEncryptionKeyName).Key.kid
 
-Enable disk encryption on a DC2 VM
+Enable disk encryption on a DC2 VM with KEK:
 
 	Set-AzureRmVMDiskEncryptionExtension -ResourceGroupName $rgName -VMName $vmName -DiskEncryptionKeyVaultUrl $diskEncryptionKeyVaultUrl -DiskEncryptionKeyVaultId $KeyVaultResourceId -KeyEncryptionKeyUrl $keyEncryptionKeyUrl -KeyEncryptionKeyVaultId $KeyVaultResourceId -VolumeType All -Force
 
 
 ## Verify DC2 VM encryption status
-In the Cloud Shell run the following
+In the Cloud Shell run the following:
 
 	Get-AzureRmVmDiskEncryptionStatus -ResourceGroupName $rgName -VMName $vmName
 
@@ -99,13 +101,13 @@ In the Cloud Shell run the following
 
 ## Check AKV for secret material related to ADE
 
-1. In AKV, see if you have access to the Secrets or Keys. Why not?
-2. Grant yourself access to the Secrets and Keys. Why is it possible for you to do this?
-3. How many secrets are present?
-4. How many keys are present?
+1. **In AKV, see if you have access to the Secrets or Keys. Why not?**
+2. **Grant yourself access to the Secrets and Keys. Why is it possible for you to do this?**
+3. **How many secrets are present?**
+4. **How many keys are present?**
 
 ## Encrypt Application Server (AS1) VM
-In the Cloud Shell run the following code.
+In the Cloud Shell run the following code:
 
 	$rgName = 'alias-ADELAB'
 	$vmName = 'AS1'
@@ -114,23 +116,23 @@ In the Cloud Shell run the following code.
 	$diskEncryptionKeyVaultUrl = $KeyVault.VaultUri
 	$KeyVaultResourceId = $KeyVault.ResourceId
 
-Enable disk encryption on a AS1 VM
+Enable disk encryption on a AS1 VM:
 
 	Set-AzureRmVMDiskEncryptionExtension -ResourceGroupName $rgname -VMName $vmName -DiskEncryptionKeyVaultUrl $diskEncryptionKeyVaultUrl -DiskEncryptionKeyVaultId $KeyVaultResourceId -VolumeType All -Force
 
 
 ## Verify AS1 VM encryption status
-In the Cloud Shell run the following
+In the Cloud Shell run the following:
 
 	Get-AzureRmVmDiskEncryptionStatus -ResourceGroupName $rgName -VMName $vmName
 
-* Did it enable encryption on both drives? 
-* Why do you think the data drive is not encrypted?
+* **Did it enable encryption on both drives?** 
+* **Why do you think the data drive is not encrypted?**
 
-## Intialize and format data disk via Run Command
-### Second disk on app server VM is not initialized during VM deployment and must be initialized 
+## Intialize and format data disk via **'Run Command'**
+### Second disk on app server VM is not initialized during VM deployment and must be initialized. 
 
-0. In Azure Portal, click on the VM, scroll down in the left pane and click on "Run Command"
+0. In Azure Portal, click on the VM, scroll down in the left pane and click on **"Run Command"**
 1. Click on the RunPowerShellScript
 2. Copy/paste the following PowerShell code into the window and click Run.
 3. Wait for execution of the commands against the VM.
@@ -140,7 +142,9 @@ In the Cloud Shell run the following
 	Format-Volume -DriveLetter G -FileSystem NTFS
 
 #### At this time, the data disk should be initialized and formatted on the VM and we should be able to encrypt it.
-#### Run the disk encryption command again (in Cloud Shell) and see if it will encrypt the second disk
+#### Run the disk encryption command again (in Cloud Shell) and see if it will encrypt the second disk.
+* **Did it enable encryption on the second disk?** 
+* **Can you figure out how to enbale encryption on the seond disk?** Tips: perhaps use different flag or redo encryption all over, or maybe other way...
 
 
 # Disable encryption on DC1 VM
@@ -151,7 +155,7 @@ In the Cloud Shell run the following
 	Disable-AzureRmVMDiskEncryption -ResourceGroupName $rgName -VMName $vmName
 	Get-AzureRmVmDiskEncryptionStatus -ResourceGroupName $rgName -VMName $vmName
 
-Verify that both disks are not encrypted.
+**Verify that both disks are not encrypted on DC1.**
 
 
 ## Check AKV for secret material related to ADE
