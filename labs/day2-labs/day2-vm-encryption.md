@@ -157,13 +157,9 @@ In the Cloud Shell run the following
 
 **Verify that both disks are not encrypted on DC1.**
 
+At this point DC1 VM disks should not be encrypted and DC2 VM disks should be encrypted.
 
-## Check AKV for secret material related to ADE
-
-1. In AKV, see if you have access to the Secrets or Keys. Why not?
-2. Grant yourself access to the Secrets and Keys. Why is it possible for you to do this?
-3. How many secrets are present?
-4. How many keys are present?
+#
 
 # Stretch Goal
 ## Extract data disks from each DC and attempt to extract NTDS.DIT
@@ -172,7 +168,7 @@ In the Cloud Shell run the following
 0. Shut down both DC VMs. In Azure Portal, select DC1 and DC2 VMs and click on Shutdown. This will deallocate the disks from a VM.
 1. Next you need to export disk to a location where you can mount it. 
 2. Since disks are very large size (data disks in this case are 2GB, OS disks are 127GB), you do not want copy it down from Azure to your device. Instead you will need to use Azure VM to access it.
-3. In Azure VM, logon to Azure portal, select the disk "DC10-data-disk1" for DC1 and "DC20-data-disk1" for DC2, click Disk Export, click Generate URL and then click to download the disk to your VM. Mount the disk.
+3. In Azure VM (created in Lab 1), logon to Azure portal, select the disk "DC10-data-disk1" for DC1 and "DC20-data-disk1" for DC2, click Disk Export, click Generate URL and then click to download the disk to your VM. Mount the disk.
 4. You can also use the following PowerShell to copy disk to your storage account (you'll need to create one)
 
 In Cloud Shell:
