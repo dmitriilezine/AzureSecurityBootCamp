@@ -8,7 +8,7 @@ It takes about one hour to deploy the ADDS and should have been done before star
 
 VMs in the lab are automatically shutdown every evening. Before starting this lab, power them up.
 
-0. In Azure Portal select resource group to which it was delopyed ('alias-ADELAB')
+0. In Azure Portal select resource group to which it was delopyed (**'alias-ADELAB'**)
 1. Select DC1, DC2, AS1 and JumpBox (JumpBox only if you plan to get OS level access into environment), and click on Start, confirm Yes if asked.
 2. Wait till VM status shown as Running.
 
@@ -180,7 +180,7 @@ In Cloud Shell:
 	$saContainer = 'containername'
 
 	$sas = Grant-AzureRmDiskAccess -ResourceGroupName $rgName -DiskName $disk -DurationInSecond 600 -Access Read
-	$destContext = New-AzureStorageContext –StorageAccountName $saName -StorageAccountKey $saKey
+	$destContext = New-AzureStorageContext â€“StorageAccountName $saName -StorageAccountKey $saKey
 	$copyBlob = start-AzureStorageBlobCopy -AbsoluteUri $sas.AccessSAS -DestContainer $saContainer -DestContext $destContext -DestBlob disk.vhd
 	$copyBlob | Get-AzureStorageBlobCopyState
 
